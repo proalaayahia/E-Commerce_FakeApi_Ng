@@ -1,0 +1,38 @@
+<div class="product-grid shadow bg-light rounded user-select-none">
+  <div class="product-image">
+    <a routerLink="/details/{{data.id}}" class="image">
+      <img class="img-1" src="{{data.image}}">
+    </a>
+    <ul class="product-links">
+      <li *ngIf="!addBtn"><a mat-icon-button style="cursor:pointer;" (click)="addBtn=true">
+          <mat-icon>shopping_cart</mat-icon>
+        </a></li>
+      <li><a mat-icon-button>
+          <mat-icon>thumb_up_alt</mat-icon>
+        </a></li>
+      <li><a mat-icon-button routerLink="/details/{{data.id}}">
+          <mat-icon>remove_red_eye</mat-icon>
+        </a></li>
+      <li><a mat-icon-button href="#">
+          <mat-icon>watch_later</mat-icon>
+        </a></li>
+    </ul>
+  </div>
+  <div class="product-content">
+    <div class="price">${{data.price}}</div>
+    <h3 routerLink="/details/{{data.id}}" class="title">{{data.title}}</h3>
+    <ul class="rating" *ngIf="data.rating.rate">
+      <mat-icon *ngFor="let star of starIn(data.rating.rate)">star</mat-icon>
+      <mat-icon *ngFor="let star of starHalf">star_half</mat-icon>
+      <mat-icon *ngFor="let star of greyStars">star_border</mat-icon>
+    </ul>
+    <div class="shop-form" *ngIf="addBtn">
+      <mat-form-field class="w-100 cart-pro" style="font-size: 14px !important" appearance="legacy">
+        <input class="text-center" matInput type="number" min="1" [(ngModel)]="amount">
+        <button matSuffix mat-icon-button color="warn" [disabled]="amount<=0" (click)="add();addBtn=false">
+          <mat-icon class="add-shopping">add_shopping_cart</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

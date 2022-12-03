@@ -1,0 +1,105 @@
+<div class="sidebar-container" [class.sidebar-is-mobile]="mobileQuery.matches"
+  [ngClass]="((this.isClick||current==='ar')&&this.isNav)?'ar':''">
+  <mat-toolbar color="primary" class="sidebar-toolbar sticky-top" [ngClass]="isNav?'bg-dark':''">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="sidebar-app-name ar"><button mat-raised-button color="primary"
+        routerLink="">{{('SHOPOY'|translate).toUpperCase()}}</button>
+    </h1>
+    <!-- ========== Start Nav View ========== -->
+
+    <div class="d-flex w-100 justify-content-end" *ngIf="this.isNav">
+      <button matTooltip="{{'SEARCH'|translate}}" matTooltipClass="bg-dark" mat-icon-button data-bs-toggle="modal"
+        data-bs-target="#modalId">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button matTooltip="{{'LANGUAGE'|translate}}" matTooltipClass="bg-dark" mat-icon-button
+        (click)="langChange($event);opened=false">
+        <mat-icon [matBadge]="isClick?'EN':'AR'" matBadgePosition="below after" matBadgeColor="primary">language
+        </mat-icon>
+      </button>
+      <button matTooltip="{{'YOUR CART'|translate}}" matTooltipClass="bg-dark" class="cart-notify" mat-icon-button
+        routerLink="cart">
+        <mat-icon matBadge="{{cart.length}}" matBadgeSize="small" [matBadgeHidden]="cart.length==0"
+          matBadgeColor="accent">shopping_cart
+        </mat-icon>
+      </button>
+      <button matTooltip="{{'NOTIFICATIONS'|translate}}" matTooltipClass="bg-dark" class="cart-notify" mat-icon-button>
+        <mat-icon style="color: #666 !important;" *ngIf="cart.length<=0">notifications
+        </mat-icon>
+        <mat-icon *ngIf="cart.length>0" matBadge="{{cart.length}}" [matBadgeHidden]="cart.length==0"
+          matBadgeColor="accent">notifications_active
+        </mat-icon>
+      </button>
+      <button mat-icon-button class="nav-item dropdown">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+          <mat-icon [style.marginLeft]="'-6px'">arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="register">
+            <mat-icon>person_add</mat-icon>
+            <span [ngClass]="(this.isClick||current==='ar')?'arspan':''">{{'REGISTER'|translate}}</span>
+          </button>
+          <button mat-menu-item routerLink="login">
+            <mat-icon>perm_identity</mat-icon>
+            <span [ngClass]="(this.isClick||current==='ar')?'arspan':''">{{'SIGN_IN'|translate}}</span>
+          </button>
+          <button mat-menu-item disabled>
+            <mat-icon>exit_to_app</mat-icon>
+            <span [ngClass]="(this.isClick||current==='ar')?'arspan':''">{{'SIGN_OUT'|translate}}</span>
+          </button>
+        </mat-menu>
+      </button>
+    </div>
+    <!-- ========== End Nav View ========== -->
+  </mat-toolbar>
+
+  <mat-sidenav-container [ngClass]="((this.isClick||current==='ar')&&this.isNav)?'ar':''"
+    class="sidebar-sidenav-container" [style.backgroundColor]="'#ecf0f3'"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav [ngClass]="isNav?'position-fixed':''" [style]="isNav?'top:60px':''" #snav mode="side"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="opened"
+      [position]="(this.isClick||current==='ar')?'end':'start'">
+      <mat-nav-list>
+        <a [ngClass]="(this.isClick||current==='ar')?'ar':''" *ngFor="let link of links" [routerLink]="link.route"
+          mat-list-item>
+          <mat-icon mat-list-icon>{{link.icon}}</mat-icon> {{link.text.toUpperCase()|translate}}
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="router-container">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- Modal Body -->
+<!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+<div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+  aria-labelledby="modalTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header pb-0">
+        <div class="w-50 d-flex justify-content-end">
+          <h3 class="modal-title mb-1" id="modalTitleId" [ngClass]="(this.isClick||current==='ar')?'ar':''">
+            {{'SEARCH'|translate}}</h3>
+        </div>
+        <div class="w-50 d-flex justify-content-start"><button type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="modal-body w-100 justify-content-center" [ngClass]="(this.isClick||current==='ar')?'ar':''">
+        <mat-form-field appearance="standard" class="w-100" [ngClass]="(this.isClick||current==='ar')?'text-end':''">
+          <mat-label>{{'SEARCH'|translate}}</mat-label>
+          <input matInput placeholder="{{'SEARCH'|translate}}. . .">
+          <button mat-icon-button matPrefix>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>

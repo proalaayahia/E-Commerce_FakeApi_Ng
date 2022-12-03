@@ -1,0 +1,46 @@
+<div class="container bg-light" [ngClass]="this.isAr?'ar':''">
+  <div class="row">
+    <div class="col mt-3 ">
+      <div *ngIf="!this.isLoading" class="w-100 user-select-none text-center shadow">
+        <app-select [data$]="categories$" (filterVal)="filterCat($event)"></app-select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="mt-3" *ngIf="!this.isLoading">
+        <!-- Section-->
+        <section class="bg-light">
+          <div class="row">
+            <div class="col-md-3 col-sm-6" *ngFor="let product of this.products | paginate: this.paginateConfig">
+              <app-product @fade [data]="product" (action)="addToCart($event)"></app-product>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="row justify-content-center" *ngIf="!this.isLoading">
+        <div class="text-center">
+          <pagination-controls id='basicPaginate' (pageChange)="paging($event)"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-center w-100" style="height: 87vh;" *ngIf="this.isLoading">
+  <app-spinner></app-spinner>
+</div>
+
+
+
+<!--menu-->
+<!-- <mat-selection-list @fade #selectCate [multiple]="false"
+          (selectionChange)="filterCat(selectCate.selectedOptions.selected[0].value)">
+          <mat-list-option [ngClass]="this.isAr?'ar':''" selected value="all">{{('ALL
+            PRODUCTS'|translate).toUpperCase()}}
+          </mat-list-option>
+          <mat-divider></mat-divider>
+          <mat-list-option [ngClass]="this.isAr?'ar':''" *ngFor="let category of categories$|async" [value]="category">
+            {{(category.toUpperCase()|translate).toUpperCase()}}
+            <mat-divider></mat-divider>
+          </mat-list-option>
+        </mat-selection-list> -->

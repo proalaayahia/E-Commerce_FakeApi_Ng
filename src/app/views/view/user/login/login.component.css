@@ -1,0 +1,32 @@
+.form-bg
+{
+  background-color: #ecf0f3 !important;
+  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+}
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex
+{
+  box-shadow:inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff
+}
+.form-style
+{
+  position: relative;
+}
+.form-loader::after
+{
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 50px;
+  right: 35px;
+  border: 2px solid #bdbdbd;
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  animation: 0.5s linear infinite spin;
+}
+@keyframes spin{
+  100%{
+    transform: rotate(360deg);
+  }
+}

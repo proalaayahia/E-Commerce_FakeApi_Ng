@@ -1,0 +1,69 @@
+<div class="w-100 text-center" *ngIf=isLoading>
+  <mat-spinner></mat-spinner>
+</div>
+<div class="table-actionbar">
+  <div class="search-box">
+    <mat-form-field class="example-form-field" appearance="outline">
+      <mat-icon matPrefix>search</mat-icon>
+      <mat-label>Search</mat-label>
+      <input #input matInput type="text" [(ngModel)]="value" (keyup)="applyFilter($event)">
+      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="action-box" *ngIf="selection.hasValue()" [@show]="selection.hasValue()">
+    <button color="warn" mat-mini-fab>
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button color="primary" mat-mini-fab>
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </div>
+</div>
+<table mat-table #table [dataSource]="this.dataSource" class="mat-elevation-z8" matSort>
+  <!-- checkbox header -->
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+        [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *cdkCellDef="let row">
+      <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+  <!-- table dynamic columns -->
+  <ng-container [ngSwitch]="component">
+    <ng-container *ngSwitchCase="'adminProduct'">
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>{{ column.header }}</mat-header-cell>
+        <mat-cell *cdkCellDef="let row">
+          <img *ngIf="column.columnDef==='image'" src="{{row[column.columnDef]}}" class="img-fluid img-responsive"
+            alt="">
+          <td *ngIf="column.columnDef!=='image'&&column.columnDef!=='rating'">{{row[column.columnDef] }}</td>
+          <td *ngIf="column.columnDef==='rating1'">{{row.rating.rate}}</td>
+          <td *ngIf="column.columnDef==='rating2'">{{row.rating.count }}</td>
+        </mat-cell>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <!-- table action column -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+    <mat-cell *matCellDef="let element" action-buttons [value]="element" (buttonAction)="onTableAction($event)">
+      {{ element.weight }}
+    </mat-cell>
+    <!--(click)="delete(i)"-->
+  </ng-container>
+  <mat-header-row class="bg-ligt" *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row [ngClass]="selection.isSelected(row)?'bg-warning':''" *matRowDef="let row; columns: displayedColumns">
+  </mat-row>
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+</table>
+<!-- table pagination -->
+<mat-paginator [pageSizeOptions]="[5,10, 20]" showFirstLastButtons></mat-paginator>

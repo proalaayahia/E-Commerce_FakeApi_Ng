@@ -1,0 +1,17 @@
+.p-position
+{
+  position: sticky !important;
+    top: 1rem;
+    right: 0;
+    z-index: 2;
+    height: calc(100vh - 7rem);
+    overflow-y: auto;
+}
+mat-selection-list
+{
+  height: 83vh !important;
+}
+.mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex
+{
+  width:200% !important;
+}

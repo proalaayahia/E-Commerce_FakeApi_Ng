@@ -1,0 +1,9 @@
+img
+{
+  width:70px !important;
+  height: 70px !important;
+}
+
+.example-tooltip-red {
+  background: #b71c1c !important;
+}

@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+/**************************************************************/
+body {
+  overflow-x: hidden;
+}
+
+
+@font-face {
+  font-family: 'Kufi';
+  src: url('./assets/fonts/static/ReemKufi-Bold.ttf'),
+  url('./assets/fonts/static/ReemKufi-Medium.ttf'),
+  url('./assets/fonts/static/ReemKufi-Regular.ttf'),
+  url('./assets/fonts/static/ReemKufi-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'Cairo';
+  src: url('./assets/fonts/static/Cairo-VariableFont_wght.ttf')
+}
+
+.ar
+{
+  font-family: 'Cairo' !important;
+  direction: rtl !important;
+  font-size: 20px !important;
+}
+.ar mat-form-field
+{
+  font-size: 14px !important;
+  font-family: 'Cairo' !important;
+}
+.ar span
+{
+  font-family: 'Cairo' !important;
+}
+.arspan
+{
+  font-size: 16px !important;
+  font-family: 'Cairo' !important;
+}

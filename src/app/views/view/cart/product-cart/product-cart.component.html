@@ -1,0 +1,72 @@
+<div [ngClass]="this.isAr?'ar':''" class="container-fluid mt-3" *ngIf="!loading">
+  <div class="row">
+    <div class="col-9 text-center">
+      <h3 [ngClass]="this.isAr?'ar':''" class="tex-secondary">{{'YOU HAVE'|translate}} <span
+          class="text-danger">{{cart.length}}</span> {{'ITEMS IN YOUR CART'|translate}}</h3>
+    </div>
+    <div class="col-3 justify-content-center text-center">
+      <button mat-raised-button [ngClass]="this.isAr?'ar':''" [disabled]="cart.length==0" (click)="clearCart()">
+        {{'CLEAR SHOPPING CART'|translate}} <mat-icon color="warn">remove_shopping_cart</mat-icon>
+      </button>
+    </div>
+  </div>
+  <fieldset class="form-group border p-3">
+    <legend class="w-auto px-2">{{'SHOPPING CART'|translate}}</legend>
+    <table class="table table-light shadow table-sm table-responsive text-center align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>{{'IMAGE'|translate}}</th>
+          <th>{{'TITLE'|translate}}</th>
+          <th>{{'PRICE'|translate}}</th>
+          <th>{{'QUANTITY'|translate}}</th>
+          <th>{{'TOTAL'|translate}}</th>
+          <th>{{'OPTIONS'|translate}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart;let i=index">
+          <td><img src="{{item.item.image}}" class="img-fluid img-responsive rounded-top" alt="product"></td>
+          <td>{{item.item.title}}</td>
+          <td>${{item.item.price}}</td>
+          <td>
+            <div class="d-flex w-100">
+              <mat-form-field class="example-full-width" appearance="outline" [style.direction]="'ltr !important'">
+                <mat-label>{{'CHANGE QUANTITY'|translate}}</mat-label>
+                <button matPrefix mat-icon-button color="primary" class="mx-2" (click)="minus(i)">
+                  <mat-icon matTooltipPosition="left" matTooltip="-1">remove</mat-icon>
+                </button>
+                <input matInput [(ngModel)]="item.quantity" type="number" class="text-center" (change)="detectChange(i)"
+                  min="1" value="{{item.quantity}}" placeholder="Choose Quantity">
+                <button matSuffix mat-icon-button color="primary" class="mx-2" (click)="plus(i)">
+                  <mat-icon matTooltipPosition="right" matTooltip="+1">add</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </td>
+          <td>${{item.item.price*item.quantity}}</td>
+          <td><button class="text-danger" mat-icon-button (click)="delete(i)">
+              <mat-icon matTooltip="{{'DELETE CART LINE'|translate}}!" matTooltipClass="bg-danger">delete_forever
+              </mat-icon>
+            </button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row mt-3">
+      <div class="col-5">
+        <h4 [ngClass]="this.isAr?'ar':''">{{'TOTAL COST'|translate}}:<span class="text-primary">${{total}}</span></h4>
+      </div>
+      <div class="col-7 text-end">
+        <button mat-raised-button class="btn btn-warning mx-2" routerLink="/products">{{'CONTINUE SHOPPING'|translate}}
+          <mat-icon>shope</mat-icon>
+        </button>
+        <button mat-raised-button class="btn btn-success mx-2" [disabled]="cart.length<=0"
+          (click)="orderCartNow()">{{'ORDER NOW'|translate}}
+          <mat-icon>shopping_basket</mat-icon>
+        </button>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>

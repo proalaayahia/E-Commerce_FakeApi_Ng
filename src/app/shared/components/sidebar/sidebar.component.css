@@ -1,0 +1,22 @@
+.modal-dialog
+{
+  max-width: 500px !important;
+}
+/* ::ng-deep .mat-form-field-placeholder{
+
+  color:red !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-placeholder{
+
+  color:red !important;
+}
+::ng-deep .mat-form-field-underline .mat-form-field-ripple{
+
+  background-color:red !important;
+}
+
+::ng-deep .mat-form-field-underline{
+
+  background-color:red !important;
+} */

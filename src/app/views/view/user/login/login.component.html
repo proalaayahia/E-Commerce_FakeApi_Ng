@@ -1,0 +1,49 @@
+<div class="container user-select-none" [ngClass]="this.isAr?'ar':''">
+  <div class="row d-flex justify-content-center" [style.height]="'85vh'">
+    <div class="col-9 col-md-5 p-3 form-bg align-self-center rounded form-style">
+      <form [formGroup]="loginForm" (ngSubmit)="submit()" class="example-form p-2">
+        <div class="mb-2" [ngClass]="{'form-loader':this.userName?.pending}">
+          <mat-form-field class="w-100" appearance="fill" [ngClass]="this.isAr?'text-end':''">
+            <mat-label>{{'USER_NAME'|translate}}</mat-label>
+            <input matInput formControlName="username" placeholder="{{'ENTER_NAME'|translate}}" name="usename">
+            <mat-hint *ngIf="userNameRequired()" class="text-danger">{{messages.username.required|translate}}</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="mb-2">
+          <mat-form-field class="w-100" appearance="fill" [ngClass]="this.isAr?'text-end':''">
+            <mat-label>{{'ENTER_PASSWORD'|translate}}</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-hint *ngIf="passwordRequired()" class="text-danger">{{messages.password.required|translate}}</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="mb-2">
+          <mat-checkbox class="example-margin" formControlName="rememberMe">&nbsp;<span
+              class="text-secondary">{{'REMEMBER_ME'|translate}}</span></mat-checkbox>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button mat-raised-button class="mb-2" [disabled]="submitDisabledIf()"
+            color="primary">{{'SUBMIT'|translate}}</button>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="mt-2 mb-2 text-center">
+          <button [style.direction]="'ltr !important'" mat-raised-button color="primary"><i
+              class="bi bi-facebook me-3"></i>Facebook
+          </button>&nbsp;&nbsp;
+          <button [style.direction]="'ltr !important'" mat-raised-button color="warn"><i
+              class="bi bi-google me-3"></i>Google </button>
+        </div>
+        <div class="mt-2">
+          <span class="lead"><a routerLink="/forget-password"
+              class="link-dark">{{'FORGET_PASSWORD'|translate}}</a></span>
+        </div>
+        <div class="mt-4 mb-1 text-center">
+          <span class="lead">{{'CREATE_ACCOUNT'|translate}}<a routerLink="/register"
+              class="link-primary">{{'SIGNUP_NOW'|translate}}</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "CREATE_ACCOUNT":"Don't Have Account?",
+  "SIGNUP_NOW":"SignUp Now",
+  "USER_NAME":"User Name",
+  "USERNAME_REQUIRED":"username is required",
+  "ENTER_NAME":"Enter your name",
+  "REMEMBER_ME":"Remember Me",
+  "ENTER_PASSWORD":"Enter Your Password",
+  "SUBMIT":"Submit",
+  "PASSWORD_REQUIRED":"password is required",
+  "FORGET_PASSWORD":"Forget Password?"
+ }

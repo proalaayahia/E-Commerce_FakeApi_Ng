@@ -1,0 +1,75 @@
+<div class="container mt-2">
+  <div class="row justify-content-center text-center">
+    <div class="col-9">
+      <h3 class="text-secondary">Admin Products</h3>
+    </div>
+    <div class="col-3">
+      <button mat-raised-button color="primary" (click)="openDialog()">Add Product <mat-icon>
+          library_add</mat-icon></button>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <app-mat-custom-table [component]="'adminProduct'" (action)="onTableAction($event)" [dataset]="this.products$"
+      [columns]="this.columns">
+    </app-mat-custom-table>
+  </div>
+</div>
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="row">
+            <div class="col-6">
+              <label for="" class="form-label">Title</label>
+              <input type="text" class="form-control" placeholder="Product Title">
+            </div>
+            <div class="col-6">
+              <label for="" class="form-label">Category</label>
+              <select class="form-control">
+                <option>jewelery</option>
+                <option>men's wear</option>
+                <option>women's wear</option>
+                <option>child's wear</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <label for="" class="form-label">Price</label>
+              <input type="number" class="form-control" placeholder="Product Price">
+            </div>
+            <div class="col-4">
+              <label for="" class="form-label">Rate</label>
+              <input type="number" class="form-control" max="5" placeholder="Rating Product">
+            </div>
+            <div class="col-4">
+              <label for="" class="form-label">Count</label>
+              <input type="number" class="form-control" placeholder="Product Count">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <label for="" class="form-label">Image</label>
+              <input type="file" class="form-control" name="" id="" placeholder="" aria-describedby="fileHelpId">
+            </div>
+            <div class="col-7">
+              <label for="" class="form-label">Description</label>
+              <textarea class="form-control" name="" id="" rows="3"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

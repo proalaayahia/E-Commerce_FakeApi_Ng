@@ -1,0 +1,12 @@
+{
+  "CREATE_ACCOUNT":"ليس لدي حساب؟",
+  "SIGNUP_NOW":"أنشــئ حســابــاً جــديداً",
+ "USER_NAME":"اسم المستخدم",
+ "ENTER_NAME":"ادخل الاسم",
+ "USERNAME_REQUIRED":".اسم المستخدم مطلوب",
+ "ENTER_PASSWORD":"كلمة المرور",
+ "REMEMBER_ME":"تذكــرني",
+ "SUBMIT":"دخــول",
+ "PASSWORD_REQUIRED":".كلمة المرور مطلوبة",
+ "FORGET_PASSWORD":"نسيت كلمة المرور؟"
+}

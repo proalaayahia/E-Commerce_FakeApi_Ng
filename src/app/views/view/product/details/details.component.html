@@ -1,0 +1,30 @@
+<div class="container mt-4" *ngIf="!this.isLoading">
+  <div class="row">
+    <div class="col-4">
+      <img src="{{product.image}}" class="img-fluid rounded-top" alt="pro">
+    </div>
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">{{product.title}}</h4>
+          <h5 class="card-title">{{product.category}}</h5>
+          <p class="card-text">{{product.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Price: </strong>${{product.price}}</li>
+          <li class="list-group-item"><strong>Rate: </strong>{{product.rating.rate}}</li>
+          <li class="list-group-item"><strong>Count: </strong>{{product.rating.count}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-center w-100" *ngIf="this.isLoading">
+  <app-spinner></app-spinner>
+</div>
+<div style="margin: 100px;">
+  <h1>Voice recognition</h1>
+  <button mat-raised-button color="primary" style="margin: 10px;" (click)="startService()">Start</button>
+  <button mat-raised-button color="warn" style="margin: 10px;" (click)="stopService()">Stop</button>
+  <p>{{this.voiceService.text}}</p>
+</div>
