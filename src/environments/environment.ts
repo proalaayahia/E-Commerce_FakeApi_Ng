@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   productsUrl: "https://fakestoreapi.com/",
-  encKey: '3AlaDdinY@7!aM07md7AfEz',
+  encKey: '3sffg*h^FHJIKEh67897md7AfEz',
   providersKeys: {
     google: {
-      clientId: '359332286375-3q47jc9nab6qunfag342s91bp7r2rhrt.apps.googleusercontent.com',
+      clientId: '359332267674337htfds-fxxb6qunfag342s91bp7r2rhrt.apps.googleusercontent.com',
       clientSecret: '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'
     },
     facebook: {
-      clientId: '1089393925036260'
+      clientId: '1089393676555036260'
     }
   }
 };
